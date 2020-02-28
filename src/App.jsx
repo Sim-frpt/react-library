@@ -12,22 +12,22 @@ export class App extends Component {
     };
 
     this.handleAddBook = this.handleAddBook.bind(this);
-    this.handleRevealForm = this.handleRevealForm.bind(this);
+    this.handleFormToggle = this.handleFormToggle.bind(this);
   }
 
-  handleRevealForm() {
+  handleAddBook() {}
+
+  handleFormToggle() {
     this.setState(state => ({
       hideForm: !state.hideForm
     }));
   }
 
-  handleAddBook() {}
-
   render() {
     return (
       <AddBookContainer
         books={this.state.books}
-        onToggleButtonClick={this.handleRevealForm}
+        onFormToggle={this.handleFormToggle}
         hideForm={this.state.hideForm}
       />
     );

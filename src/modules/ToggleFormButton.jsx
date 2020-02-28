@@ -6,7 +6,7 @@ function ToggleFormButton(props) {
     <Button
       classVariant="input-container__toggle"
       text="Add Book"
-      onClick={props.onClick}
+      onClick={props.onToggleButtonClick}
     />
   );
 }
