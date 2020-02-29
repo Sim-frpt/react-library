@@ -7,12 +7,16 @@ export class BookForm extends Component {
     this.state = {
       title: "",
       author: "",
-      images: ""
+      pages: "",
+      cover: ""
     };
 
     this.fileInput = React.createRef();
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleCancelSubmit = this.handleCancelSubmit.bind(this);
+    this.handleFiles = this.handleFiles.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -20,13 +24,26 @@ export class BookForm extends Component {
   }
 
   handleCancelSubmit(event) {
-    this.props.onCancelFormSubmit();
+    this.props.handleFormToggle();
   }
 
   handleFiles(event) {
     const file = event.target.files[0];
-    // TODO I stopped here
-    console.log(file);
+
+    this.setState({ cover: file.name });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const bookValues = {
+      title: this.state.title,
+      author: this.state.author,
+      pages: this.state.pages,
+      cover: this.state.cover
+    };
+
+    this.props.handleAddBook(bookValues);
   }
 
   render() {
@@ -75,7 +92,7 @@ export class BookForm extends Component {
               className="book-form__input"
               type="file"
               ref={this.fileInput}
-              name="file"
+              name="cover"
               onChange={this.handleFiles}
             />
           </label>

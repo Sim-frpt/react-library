@@ -2,28 +2,48 @@ import placeHolder from "../assets/images/book-cover-placeholder.jpg";
 
 const books = [];
 
-const createBook = ({
+const CreateBook = ({
   title,
   author,
   pages,
   isRead = false,
-  img = placeHolder
+  cover = placeHolder
 }) => {
   const id = books.length ? books.length + 1 : 1;
 
-  const toggleReadingStatus = () => {
-    this.isRead = !this.isRead;
-  };
-
-  return {
+  const self = {
     id,
     title,
     author,
     pages,
     isRead,
-    img,
-    toggleReadingStatus
+    cover,
+    toggleReadingStatus() {
+      this.isRead = !this.isRead;
+    }
   };
+
+  updateBookArray(self);
+
+  return self;
 };
 
-export { books, createBook };
+const updateBookArray = book => {
+  books.push(book);
+};
+
+CreateBook({
+  title: "test",
+  author: "myself",
+  pages: 423,
+  cover: "placeholder"
+});
+
+CreateBook({
+  title: "test2",
+  author: "anotherAuthor",
+  pages: 123,
+  cover: "placeholder"
+});
+
+export { books, CreateBook };
