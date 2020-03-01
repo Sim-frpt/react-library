@@ -6,11 +6,10 @@ const CreateBook = ({
   title,
   author,
   pages,
-  isRead = false,
-  cover = placeHolder
+  cover = placeHolder,
+  isRead = false
 }) => {
   const id = books.length ? books.length + 1 : 1;
-
   const self = {
     id,
     title,
@@ -36,14 +35,14 @@ CreateBook({
   title: "test",
   author: "myself",
   pages: 423,
-  cover: "placeholder"
+  cover: placeHolder
 });
 
 CreateBook({
   title: "test2",
   author: "anotherAuthor",
   pages: 123,
-  cover: "placeholder"
+  cover: placeHolder
 });
 
 export { books, CreateBook };

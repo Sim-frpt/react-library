@@ -33,7 +33,7 @@ export class App extends Component {
 
   handleFormToggle() {
     this.setState(state => ({
-      hideForm: !state.hideForm
+      isFormHidden: !state.isFormHidden
     }));
   }
 
