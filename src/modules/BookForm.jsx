@@ -97,8 +97,14 @@ export class BookForm extends Component {
   }
 
   render() {
+    let formClass = "book-form";
+
+    if (this.props.isFormHidden) {
+      formClass += " book-form--hidden";
+    }
+
     return (
-      <form className="book-form" onSubmit={this.handleSubmit}>
+      <form className={formClass} onSubmit={this.handleSubmit}>
         <div className="book-form__element">
           <label className="book-form__label">
             Title <span className="book__required">(required)</span>:
