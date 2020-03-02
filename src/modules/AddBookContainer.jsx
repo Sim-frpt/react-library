@@ -5,7 +5,10 @@ import BookForm from "./BookForm";
 function AddBookContainer(props) {
   return (
     <section className="input-container">
-      <ToggleFormButton handleFormToggle={props.handleFormToggle} />
+      <ToggleFormButton
+        handleFormToggle={props.handleFormToggle}
+        isFormHidden={props.isFormHidden}
+      />
       <BookForm
         isFormHidden={props.isFormHidden}
         books={props.books}
