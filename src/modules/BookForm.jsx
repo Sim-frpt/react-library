@@ -149,8 +149,8 @@ export class BookForm extends Component {
           </label>
         </div>
         <div className="book-form__element">
-          <label className="book-form__label">
-            Image:
+          <label className="book-form__label custom-file-upload">
+            Upload Book Cover
             <input
               className="book-form__input"
               type="file"
@@ -162,10 +162,19 @@ export class BookForm extends Component {
           </label>
         </div>
         <div className="book-form__control">
-          <button type="submit" value>
+          <button
+            type="submit"
+            className="button button--primary book-form__add-button"
+            value
+          >
             Add
           </button>
-          <button type="button" value onClick={this.handleCancelSubmit}>
+          <button
+            type="button"
+            className="button button--secondary book-form__cancel-button"
+            value
+            onClick={this.handleCancelSubmit}
+          >
             Cancel
           </button>
         </div>
