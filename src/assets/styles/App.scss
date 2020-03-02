@@ -1,0 +1,50 @@
+@import "./css-reset";
+@import url("https://fonts.googleapis.com/css?family=Spartan&display=swap");
+
+$dark-blue: #114b5f;
+$secondary-blue: #456990;
+$accent-red: #f45b69;
+
+input[type="file"] {
+  display: none;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "Spartan", Arial, sans-serif;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.book-form {
+  &--hidden {
+    display: none;
+  }
+}
+
+.button {
+  text-transform: uppercase;
+  padding: 0.4em;
+  margin: 0.5em;
+  &__form-toggle {
+  }
+
+  &--primary {
+    // background-color: $dark-blue;
+  }
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.input-container {
+  min-height: 20vh;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { books, CreateBook } from "./model/book";
 import AddBookContainer from "./modules/AddBookContainer";
 import MainContainer from "./modules/MainContainer";
+import "./assets/styles/App.scss";
 
 export class App extends Component {
   constructor() {

@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 
 function ToggleFormButton(props) {
-  let buttonClass = "form-toggle__button";
+  let buttonClass = "button button--primary button__form-toggle";
   buttonClass += props.isFormHidden ? "" : " button--hidden";
 
   return (
