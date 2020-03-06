@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { books, CreateBook } from "./model/book";
+import { CreateBook } from "./model/book";
+import defaultBooks from "./model/defaultBooks";
 import AddBookContainer from "./modules/AddBookContainer";
 import MainContainer from "./modules/MainContainer";
 import "./assets/styles/App.scss";
@@ -9,7 +10,7 @@ export class App extends Component {
     super();
 
     this.state = {
-      books,
+      books: [],
       isFormHidden: true
     };
 
@@ -19,17 +20,50 @@ export class App extends Component {
     this.handleStatusToggle = this.handleStatusToggle.bind(this);
   }
 
-  handleAddBook(bookValues) {
-    CreateBook(bookValues);
+  componentDidMount() {
+    const localStorageContent = localStorage.getItem("books") || [];
+    let books;
 
-    this.setState({
-      books: books
+    if (localStorageContent.length > 0) {
+      books = JSON.parse(localStorageContent).map((book, index) => {
+        book.id = index + 1;
+        return CreateBook(book);
+      });
+    } else {
+      books = defaultBooks.map((book, index) => {
+        book.id = index + 1;
+        return CreateBook(book);
+      });
+    }
+    this.setState({ books });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.books !== prevState.books) {
+      this.updateLocalStorage();
+    }
+  }
+
+  handleAddBook(bookValues) {
+    bookValues.id = this.state.books.length ? this.state.books.length + 1 : 1;
+
+    const newBook = CreateBook(bookValues);
+
+    this.setState(state => {
+      const books = [...state.books, newBook];
+
+      return {
+        books
+      };
     });
   }
 
   handleDeleteBook(id) {
-    const books = this.state.books.filter(book => book.id !== id);
-    this.setState({ books });
+    this.setState(state => {
+      const books = state.books.filter(book => book.id !== id);
+
+      return { books };
+    });
   }
 
   handleFormToggle() {
@@ -40,13 +74,21 @@ export class App extends Component {
 
   handleStatusToggle(id) {
     this.setState(state => {
-      state.books.forEach(book => {
+      const books = state.books.map(book => {
         if (book.id === id) {
           book.toggleReadingStatus();
         }
+
+        return book;
       });
-      return { books: state.books };
+
+      return { books };
     });
+  }
+
+  updateLocalStorage() {
+    const books = JSON.stringify(this.state.books);
+    localStorage.setItem("books", books);
   }
 
   render() {
