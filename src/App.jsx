@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { CreateBook } from "./model/book";
 import defaultBooks from "./model/defaultBooks";
 import AddBookContainer from "./modules/AddBookContainer";
+import Header from "./modules/Header";
 import MainContainer from "./modules/MainContainer";
 import "./assets/styles/App.scss";
 
@@ -94,6 +95,7 @@ export class App extends Component {
   render() {
     return (
       <>
+        <Header />
         <AddBookContainer
           books={this.state.books}
           handleFormToggle={this.handleFormToggle}
