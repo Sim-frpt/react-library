@@ -1,9 +1,11 @@
 @import "./css-reset";
+@import "./mixins";
 @import url("https://fonts.googleapis.com/css?family=Spartan&display=swap");
 
 $dark-blue: #114b5f;
-$secondary-blue: #456990;
-$accent-red: #f45b69;
+$primary-blue: #456990;
+$accent-invalid: #f45b69;
+$accent-valid: #e4fde1;
 
 input[type="file"] {
   display: none;
@@ -14,30 +16,127 @@ input,
 textarea,
 button {
   font-family: "Spartan", Arial, sans-serif;
+  color: #424242;
+}
+
+body {
+  background-color: #fff;
 }
 
 .custom-file-upload {
-  border: 1px solid #ccc;
+  height: 2.5em;
+  margin: 1em 0.5em 0.5em;
+  padding-top: 0.6em;
+  background-color: $dark-blue;
+  color: white;
+  border: 2px solid $primary-blue;
+  border-radius: 4px;
   display: inline-block;
-  padding: 6px 12px;
   cursor: pointer;
+  @include button-transition();
+
+  &:hover {
+    @include button-hover();
+  }
 }
 
 .book-form {
+  padding: 1em;
+  width: 40%;
+  min-width: 20em;
+  margin: auto;
+  font-weight: bold;
+
+  &__element {
+    margin: 0.5em auto;
+    padding: 0.5em;
+    width: 50%;
+    min-width: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__label {
+    margin: 1em;
+  }
+
+  &__input {
+    font-size: 1.1em;
+    height: 2.5em;
+    margin: 0.5em;
+    padding: 0.5em;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 2px solid $primary-blue;
+
+    &:focus,
+    :active {
+      outline: 3px solid $dark-blue;
+    }
+
+    &:valid {
+      background: $accent-valid;
+    }
+
+    &:invalid {
+      background: $accent-invalid + 99;
+    }
+  }
+
+  &__control {
+    width: 50%;
+    min-width: 15em;
+    margin: 0.5em auto;
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+  }
+
   &--hidden {
     display: none;
   }
 }
 
+.book-form:not(.book-form--hidden) {
+  animation: drop-down 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
 .button {
   text-transform: uppercase;
-  padding: 0.4em;
-  margin: 0.5em;
+  font-weight: bold;
+  padding: 0.8em 0.6em 0.6em;
+  margin: auto;
+  border: 1px solid black;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+  height: 3em;
+  min-width: 5em;
+  @include button-transition();
+
+  &:hover {
+    @include button-hover();
+  }
+
   &__form-toggle {
+    // display: none;
+    width: 10vw;
+    min-width: 8em;
+    height: 5vh;
+    margin: 5em auto;
   }
 
   &--primary {
-    // background-color: $dark-blue;
+    background-color: $primary-blue;
+    color: white;
+    border: 1px solid black;
+  }
+
+  &--secondary {
+    background-color: white;
+    color: $primary-blue;
+    border: 1px solid $primary-blue;
   }
 
   &--hidden {
@@ -47,4 +146,30 @@ button {
 
 .input-container {
   min-height: 20vh;
+  height: auto;
+  text-align: center;
+}
+
+@keyframes drop-down {
+  0% {
+    display: block;
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  20% {
+    opacity: 0.1;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

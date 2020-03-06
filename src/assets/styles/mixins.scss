@@ -1,0 +1,6 @@
+@mixin button-hover() {
+  transform: scale(1.05);
+}
+@mixin button-transition() {
+  transition: all 0.1s ease-out;
+}

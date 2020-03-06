@@ -150,6 +150,8 @@ export class BookForm extends Component {
             name="pages"
             value={this.state.pages}
             onChange={this.handleChange}
+            required
+            min="1"
             max="10000"
           />
         </div>
