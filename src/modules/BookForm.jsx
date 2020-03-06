@@ -106,60 +106,67 @@ export class BookForm extends Component {
     return (
       <form className={formClass} onSubmit={this.handleSubmit}>
         <div className="book-form__element">
-          <label className="book-form__label">
+          <label htmlFor="title" className="book-form__label">
             Title <span className="book__required">(required)</span>:
-            <input
-              className="book-form__input"
-              type="text"
-              value={this.state.title}
-              name="title"
-              onChange={this.handleChange}
-              minLength="2"
-              maxLength="50"
-              required
-            />
           </label>
+          <input
+            id="title"
+            className="book-form__input"
+            type="text"
+            value={this.state.title}
+            name="title"
+            onChange={this.handleChange}
+            minLength="2"
+            maxLength="50"
+            required
+          />
         </div>
+
         <div className="book-form__element">
-          <label>
+          <label htmlFor="author" className="book-form__label">
             Author <span className="book__required">(required)</span>:
-            <input
-              className="book-form__input"
-              type="text"
-              name="author"
-              value={this.state.author}
-              onChange={this.handleChange}
-              required
-              minLength="2"
-              maxLength="100"
-            />
           </label>
+          <input
+            id="author"
+            className="book-form__input"
+            type="text"
+            name="author"
+            value={this.state.author}
+            onChange={this.handleChange}
+            required
+            minLength="2"
+            maxLength="100"
+          />
         </div>
+
         <div className="book-form__element">
-          <label className="book-form__label">
+          <label htmlFor="pages" className="book-form__label">
             Pages:
-            <input
-              className="book-form__input"
-              type="number"
-              name="pages"
-              value={this.state.pages}
-              onChange={this.handleChange}
-              max="10000"
-            />
           </label>
+          <input
+            id="pages"
+            className="book-form__input"
+            type="number"
+            name="pages"
+            value={this.state.pages}
+            onChange={this.handleChange}
+            max="10000"
+          />
         </div>
+
         <div className="book-form__element">
-          <label className="book-form__label custom-file-upload">
+          <label htmlFor="file" className="custom-file-upload">
             Upload Book Cover
-            <input
-              className="book-form__input"
-              type="file"
-              ref={this.fileInput}
-              name="cover"
-              accept="image/*"
-              onChange={this.handleFileInput}
-            />
           </label>
+          <input
+            id="file"
+            className="book-form__input"
+            type="file"
+            ref={this.fileInput}
+            name="cover"
+            accept="image/*"
+            onChange={this.handleFileInput}
+          />
         </div>
         <div className="book-form__control">
           <button
