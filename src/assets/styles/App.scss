@@ -8,7 +8,10 @@ $accent-invalid: #f45b69;
 $accent-valid: #e4fde1;
 
 input[type="file"] {
-  display: none;
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
 }
 
 body,
@@ -32,7 +35,7 @@ button {
   @include scale-up-transition();
 
   &:hover {
-    @include hover-scale-up();
+    @include hover-scale-up(1.05);
   }
 }
 
@@ -42,6 +45,7 @@ button {
   min-width: 20em;
   margin: auto;
   font-weight: bold;
+  animation: drop-down 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 
   &__element {
     margin: 0.5em auto;
@@ -94,24 +98,23 @@ button {
   }
 }
 
-.book-form:not(.book-form--hidden) {
-  animation: drop-down 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-}
-
 .book__card {
   min-height: 700px;
+  min-width: 250px;
   border: 1px solid $primary-blue;
   border-radius: 4px;
   padding: 1em;
   margin: 1em 1em 2em;
   flex-basis: 25em;
   text-align: center;
-  background: rgb(255, 255, 255);
+  background: #e9f9ff;
+  box-shadow: 6px 6px 10px rgb(141, 141, 141);
   @include scale-up-transition();
 
   &:hover {
-    @include hover-scale-up();
+    @include hover-scale-up(1.02);
   }
+
   &__title {
     font-size: 1.7em;
     color: $dark-blue;
@@ -128,9 +131,8 @@ button {
   &__cover {
     width: 50%;
     height: 40%;
+    object-fit: contain;
     margin-bottom: 1em;
-    border: 1px solid $primary-blue;
-    box-shadow: 3px 2px 3px $dark-blue;
   }
 
   &__pages {
@@ -169,7 +171,7 @@ button {
   @include scale-up-transition();
 
   &:hover {
-    @include hover-scale-up();
+    @include hover-scale-up(1.05);
   }
 
   &:focus,
@@ -178,7 +180,6 @@ button {
   }
 
   &__form-toggle {
-    // display: none;
     width: 10vw;
     min-width: 8em;
     height: 5vh;
@@ -199,6 +200,20 @@ button {
 
   &--hidden {
     display: none;
+  }
+}
+
+.file-preview {
+  color: #8f8f8f;
+
+  &__text {
+    padding: 1em 0;
+  }
+
+  &__cover {
+    width: 10em;
+    height: 15em;
+    object-fit: contain;
   }
 }
 
@@ -259,5 +274,14 @@ button {
     .button {
       margin: 1em;
     }
+  }
+
+  .main-section {
+    width: 100%;
+  }
+
+  .book__card__cover {
+    height: 30%;
+    width: 40%;
   }
 }

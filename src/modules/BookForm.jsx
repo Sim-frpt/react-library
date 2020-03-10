@@ -14,18 +14,32 @@ export class BookForm extends Component {
 
     this.fileInput = React.createRef();
 
+    this.clearFileUploadVisualCue = this.clearFileUploadVisualCue.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCancelSubmit = this.handleCancelSubmit.bind(this);
     this.handleFileInput = this.handleFileInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  clearFileUploadVisualCue() {
+    const previewDiv = document.querySelector(".file-preview");
+    const previewText = document.createElement("p");
+
+    while (previewDiv.firstChild) {
+      previewDiv.removeChild(previewDiv.firstChild);
+    }
+
+    previewText.textContent = "No file currently selected for upload";
+    previewDiv.append(previewText);
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleCancelSubmit(event) {
+  handleCancelSubmit() {
     this.props.handleFormToggle();
+    this.clearFileUploadVisualCue();
   }
 
   async handleFileInput(event) {
@@ -35,9 +49,10 @@ export class BookForm extends Component {
     if (!file) {
       return;
     }
-    // input.setCustomValidity("");
 
-    if (!this.isFileSizeAppropriate(input, file)) {
+    const isFileSizeAppropriate = this.returnFileSizeValidity(input, file);
+
+    if (!isFileSizeAppropriate) {
       return;
     }
 
@@ -79,21 +94,53 @@ export class BookForm extends Component {
     this.props.handleFormToggle();
     this.props.handleAddBook(bookValues);
     form.reset();
+    this.clearFileUploadVisualCue();
   }
 
-  isFileSizeAppropriate(input, file) {
-    const filesize = (file.size / 1024).toFixed(4);
+  returnFileSizeValidity(input, file) {
+    // make sure file is less than 1000 kB
+    const fileSize = (file.size / 1024).toFixed(1);
     const maxSize = 1000;
 
-    if (filesize > maxSize) {
+    this.setUploadStatusVisualCue(file, fileSize, maxSize);
+
+    if (fileSize > maxSize) {
       input.setCustomValidity(
-        `Please make sure your file is less than ${maxSize}`
+        `Please make sure your file is less than ${maxSize} kB`
       );
       return false;
     } else {
       input.setCustomValidity("");
       return true;
     }
+  }
+
+  setUploadStatusVisualCue(file, fileSize, maxSize) {
+    const previewDiv = document.querySelector(".file-preview");
+    const previewText = document.createElement("p");
+    previewText.classList.add("file-preview__text");
+
+    while (previewDiv.firstChild) {
+      previewDiv.removeChild(previewDiv.firstChild);
+    }
+
+    if (!file) {
+      previewText.textContent = "No file currently selected for upload";
+      previewDiv.append(previewText);
+      return;
+    }
+
+    if (fileSize > maxSize) {
+      previewText.textContent = `"${file.name}" is too big (${fileSize} kB), choose one less than ${maxSize} kB`;
+      previewDiv.append(previewText);
+      return;
+    }
+
+    const previewImg = document.createElement("img");
+    previewImg.classList.add("file-preview__cover");
+    previewImg.src = URL.createObjectURL(file);
+    previewText.textContent = `${file.name}, size: ${fileSize} kB`;
+    previewDiv.append(previewText, previewImg);
   }
 
   render() {
@@ -104,7 +151,7 @@ export class BookForm extends Component {
     }
 
     return (
-      <form className={formClass} onSubmit={this.handleSubmit}>
+      <form className={formClass} name="add-book" onSubmit={this.handleSubmit}>
         <div className="book-form__element">
           <label htmlFor="title" className="book-form__label">
             Title <span className="book__required">(required)</span>:
@@ -170,6 +217,13 @@ export class BookForm extends Component {
             onChange={this.handleFileInput}
           />
         </div>
+
+        <div className="file-preview">
+          <p className="file-preview__text">
+            No file currently selected for upload
+          </p>
+        </div>
+
         <div className="book-form__control">
           <button
             type="submit"

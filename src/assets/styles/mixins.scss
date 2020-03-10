@@ -1,6 +1,7 @@
-@mixin hover-scale-up() {
-  transform: scale(1.05);
+@mixin hover-scale-up($factor) {
+  transform: scale($factor);
 }
+
 @mixin scale-up-transition() {
   transition: all 0.1s ease-out;
 }
