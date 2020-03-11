@@ -5,7 +5,7 @@
 /* TODO: animation still does not work when I want to hide the form*/
 $dark-blue: #114b5f;
 $primary-blue: #456990;
-$accent-invalid: #f45b69;
+$accent-invalid: #ffaab1;
 $accent-valid: #e4fde1;
 
 input[type="file"] {
@@ -80,7 +80,7 @@ button {
     }
 
     &:invalid {
-      background: $accent-invalid + 99;
+      background: $accent-invalid;
     }
   }
 
