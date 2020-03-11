@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Sim-frpt/react-library/static/css/main.bab81af2.chunk.css",
+    "main.js": "/Sim-frpt/react-library/static/js/main.481ba176.chunk.js",
+    "main.js.map": "/Sim-frpt/react-library/static/js/main.481ba176.chunk.js.map",
+    "runtime-main.js": "/Sim-frpt/react-library/static/js/runtime-main.a8f8c9cc.js",
+    "runtime-main.js.map": "/Sim-frpt/react-library/static/js/runtime-main.a8f8c9cc.js.map",
+    "static/js/2.7a762ac3.chunk.js": "/Sim-frpt/react-library/static/js/2.7a762ac3.chunk.js",
+    "static/js/2.7a762ac3.chunk.js.map": "/Sim-frpt/react-library/static/js/2.7a762ac3.chunk.js.map",
+    "index.html": "/Sim-frpt/react-library/index.html",
+    "precache-manifest.bd55981342846ab8943d1406fee23a3a.js": "/Sim-frpt/react-library/precache-manifest.bd55981342846ab8943d1406fee23a3a.js",
+    "service-worker.js": "/Sim-frpt/react-library/service-worker.js",
+    "static/css/main.bab81af2.chunk.css.map": "/Sim-frpt/react-library/static/css/main.bab81af2.chunk.css.map",
+    "static/js/2.7a762ac3.chunk.js.LICENSE.txt": "/Sim-frpt/react-library/static/js/2.7a762ac3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a8f8c9cc.js",
+    "static/js/2.7a762ac3.chunk.js",
+    "static/css/main.bab81af2.chunk.css",
+    "static/js/main.481ba176.chunk.js"
+  ]
+}
