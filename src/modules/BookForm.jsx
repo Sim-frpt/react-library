@@ -12,7 +12,7 @@ export class BookForm extends Component {
       cover: ""
     };
 
-    this.fileInput = React.createRef();
+    this.fileInputRef = React.createRef();
 
     this.clearFileUploadVisualCue = this.clearFileUploadVisualCue.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -211,7 +211,7 @@ export class BookForm extends Component {
             id="file"
             className="book-form__input"
             type="file"
-            ref={this.fileInput}
+            ref={this.fileInputRef}
             name="cover"
             accept="image/*"
             onChange={this.handleFileInput}

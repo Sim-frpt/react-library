@@ -2,6 +2,7 @@
 @import "./mixins";
 @import url("https://fonts.googleapis.com/css?family=Spartan&display=swap");
 
+/* TODO: animation still does not work when I want to hide the form*/
 $dark-blue: #114b5f;
 $primary-blue: #456990;
 $accent-invalid: #f45b69;
@@ -45,7 +46,6 @@ button {
   min-width: 20em;
   margin: auto;
   font-weight: bold;
-  animation: drop-down 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 
   &__element {
     margin: 0.5em auto;
@@ -95,6 +95,10 @@ button {
 
   &--hidden {
     display: none;
+  }
+
+  &:not(.book-form--hidden) {
+    animation: drop-down 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
 }
 
